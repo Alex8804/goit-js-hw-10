@@ -2,12 +2,6 @@ import { fetchBreeds, fetchCatByBreed } from './cat-api';
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
 
-let sSelect = new SlimSelect({
-  select: '#slim-select',
-});
-
-console.log(sSelect);
-
 const elements = {
   select: document.querySelector('.breed-select'),
   catInfo: document.querySelector('.cat-info'),
@@ -23,6 +17,9 @@ fetchBreeds()
     elements.select.classList.remove('js-visible');
     elements.loader.classList.add('js-visible');
     elements.select.innerHTML = createList(data);
+    new SlimSelect({
+      select: '#slim-select',
+    });
   })
   .catch(error => {
     elements.select.classList.add('js-visible');
