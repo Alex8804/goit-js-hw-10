@@ -1,6 +1,15 @@
 import { fetchBreeds, fetchCatByBreed } from './cat-api';
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
+import Notiflix from 'notiflix';
+
+Notiflix.Notify.init({
+  position: 'left-top',
+  width: '800px',
+  fontSize: '20px',
+  closeButton: true,
+  distance: '20px',
+});
 
 const elements = {
   select: document.querySelector('.breed-select'),
@@ -10,7 +19,6 @@ const elements = {
 };
 
 elements.select.addEventListener('change', onSelectClick);
-elements.error.classList.add('js-visible');
 
 fetchBreeds()
   .then(data => {
@@ -23,8 +31,7 @@ fetchBreeds()
   })
   .catch(error => {
     elements.select.classList.add('js-visible');
-    elements.error.classList.remove('js-visible');
-    console.log(error);
+    Notiflix.Notify.failure(`${elements.error.textContent}`);
   });
 
 function createList(arr) {
@@ -46,8 +53,8 @@ function onSelectClick(evt) {
       elements.catInfo.innerHTML = createMarkup(...data);
     })
     .catch(error => {
-      elements.error.classList.remove('js-visible');
-      console.log(error);
+      console.log(error.message);
+      Notiflix.Notify.failure(`${elements.error.textContent}`);
     });
 }
 
