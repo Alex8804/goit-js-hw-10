@@ -8,7 +8,7 @@ Notiflix.Notify.init({
   width: '800px',
   fontSize: '20px',
   closeButton: true,
-  distance: '20px',
+  distance: '40px',
 });
 
 const elements = {
@@ -42,6 +42,8 @@ function createList(arr) {
 
 function onSelectClick(evt) {
   const catsId = evt.target.value;
+  elements.catInfo.innerHTML = '';
+
   elements.catInfo.classList.add('js-visible');
   elements.loader.classList.remove('js-visible');
   elements.error.classList.add('js-visible');
