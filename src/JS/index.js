@@ -50,6 +50,7 @@ function onSelectClick(evt) {
 
   fetchCatByBreed(catsId)
     .then(data => {
+      console.log(data);
       elements.catInfo.classList.remove('js-visible');
       elements.loader.classList.add('js-visible');
       elements.catInfo.innerHTML = createMarkup(...data);
